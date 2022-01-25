@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YourNfts: I Downloaded Them All</title>
+    <link rel="icon" href="./icon.png">
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./ol.css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="polyfill.min.js"></script>
+    <script src="./bootstrap.bundle.min.js"></script>
+    <script src="./ol.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ol-zoom {
+            top: unset;
+            bottom: 0.5em;
+        }
+
+        #map {
+            background-color: black;
+        }
+
+        .legend {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            color: #ffffff;
+        }
+
+        #email::after {
+            content: "me\40gmail.com";
+        }
+    </style>
+</head>
+
+<body>
+    <div id="explore" class="container-fluid p-0 d-flex flex-column" style="height: 100%;">
+        <div class="container-fluid d-flex align-items-center align-content-center">
+            <img src="./icon.png" class="img-fluid" style="width:64px; position: absolute; left: 0; top: 0;">
+            <h5 class="d-inline-block flex-fill text-center m-2" style="margin-left: 70px !important; margin-right: 70px !important; z-index: 10;">I downloaded all the NFTs on the Ethereum blockchain. You are looking at 40,000 of them
+                composed
+                into a <a style="color:white;" href="https://en.wikipedia.org/wiki/Photographic_mosaic" target="_blank">photomosaic</a>.</h5>
+        </div>
+        <div id="map" class="flex-fill"></div>
+        <div class="container-fluid text-center">
+            <h5><a href="#stats" class="link-dark">&#8964; Read More &#8964;</a></h5>
+        </div>
+    </div>
+    <div id="stats" class="container-xl">
+        <div class="row m-0">
+            <h3>What is an NFT</h3>
+            <p>An NFT is a "non fungible token" composed of a contract, token, metadata, and an image/video file. They can represent anything, including <a href="https://www.artblocks.io/" rel="noopener noreferrer" target="_blank">digital art</a>, <a href="https://decentraland.org/" rel="noopener noreferrer" target="_blank">virtual property</a>, and <a href="https://uniswap.org/" rel="noopener noreferrer" target="_blank">investment positions</a>. Many people believe that all data on the blockchain lasts forever. While that is true, after
+                reading the specifications <small class="text-muted">(<a href="https://eips.ethereum.org/EIPS/eip-721" rel="noopener noreferrer" target="_blank">1</a>,<a href="https://eips.ethereum.org/EIPS/eip-1155"
+                        rel="noopener noreferrer" target="_blank">2</a>)</small> and analyzing how the specifications are implemented in practice, most NFTs are not immortal.
+                The rest of this article will explore.</p>
+            <!--chart here-->
+            <h3>The Contract and Token</h3>
+            <p>The root of an NFT is the contract. Contracts are arbitrary code. Contract owners can often
+                modify your NFTs after you purchase them, either by explicitly allowing the operation or by
+                <a href="https://santexgroup.com/blog/is-it-possible-to-upgrade-a-smart-contract-once-deployed/" rel="noopener noreferrer" target="_blank">upgrading the contract</a>.
+            </p>
+            <!--<p>Assuming you trust the contract, the token is the this is the portion of the NFT you own.</p>-->
+            <p>That being said, there is a lot of contract diversity on Ethereum blockchain and it is likely many of those contracts are honest. Each rectangle below represents
+                a contract and their relative size indicates the number of tokens minted by the contract.</p>
+            <div class="row">
+                <div class="col-lg-6"><img src="./nft-counts-by-contract.png" class="img-fluid rounded"></div>
+                <div class="col-lg-6">
+                    <dl class="row">
+                        <dt class="col-sm-3 px-1"><a href="https://opensea.io/" rel="noopener noreferrer" target="_blank" title="website">Open Sea</a>
+                            <a href="https://etherscan.io/address/0x495f947276749ce646f68ac8c248420045cb7b5e" rel="noopener noreferrer" target="_blank"><img title="contract" class="img-fluid legend" src="./archive.svg"></a>
+                        </dt>
+                        <dd class="col-sm-9">The largest NFT marketplace. Facilitates trades and allows users to mint
+                            their own NFTs using their contract.</dd>
+                        <dt class="col-sm-3 px-1"><a href="https://sorare.com/" rel="noopener noreferrer" target="_blank" title="website">Sorare</a>
+                            <a href="https://etherscan.io/address/0x629a673a8242c2ac4b7b8c5d8735fbeac21a6205" rel="noopener noreferrer" target="_blank"><img title="contract" class="img-fluid legend" src="./archive.svg"></a>
+                        </dt>
+                        <dd class="col-sm-9">Online game where users buy officially licensed cards representing soccer
+                            players and build teams</dd>
+                        <dt class="col-sm-3 px-1"><a href="https://uniswap.org/blog/uniswap-v3" rel="noopener noreferrer" target="_blank" title="website">Uniswap 3</a>
+                            <a href="https://etherscan.io/address/0xc36442b4a4522e871399cd717abdd847ab11fe88" rel="noopener noreferrer" target="_blank"><img title="contract" class="img-fluid legend" src="./archive.svg"></a>
+                        </dt>
+                        <dd class="col-sm-9">Automated Market Maker (AMM) and critical infrastructure for decentralized
+                            finance.</dd>
+                        <dt class="col-sm-3 px-1"><a href="https://rarible.com/" rel="noopener noreferrer" target="_blank" title="website">Rarible</a>
+                            <a href="https://etherscan.io/address/0xd07dc4262bcdbf85190c01c996b4c06a461d2430" rel="noopener noreferrer" target="_blank"><img title="contract" class="img-fluid legend" src="./archive.svg"></a>
+                        </dt>
+                        <dd class="col-sm-9">Another NFT marketplace. Facilitates trades and allows users to mint their
+                            own NFTs using their contract.</dd>
+                        <dt class="col-sm-3 px-1"><a href="https://www.artblocks.io/" rel="noopener noreferrer" target="_blank" title="website">Art Blocks</a>
+                            <a href="https://etherscan.io/address/0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270" rel="noopener noreferrer" target="_blank"><img title="contract" class="img-fluid legend" src="./archive.svg"></a>
+                        </dt>
+                        <dd class="col-sm-9">Platform focused on the curation of programmable generative art.</dd>
+                    </dl>
+                </div>
+            </div>
+            <!--contract $$ note https://www.web3.university/article/nft-deployment-cost-->
+            <h3 id="images" class="mt-3">The Metadata and Images</h3>
+            <p>The <a target="_black" href="https://docs.opensea.io/docs/metadata-standards#metadata-structure" rel="noopener noreferrer">metadata</a> for an NFT can link to an image/video and include any other data the NFT's creator
+                wishes. Because of their size, it is common for the metadata and images to be stored off the blockchain and just use the blockchain as a pointer. HTML and <a href="https://ipfs.io/" target="_blank"
+                    rel="noopener noreferrer">IPFS</a> are usally used for offchain storage.</p>
+            <div class="row">
+                <div class="col-lg-4 d-flex justify-content-center"><img src="./percent-protocol.svg" class="img-fluid" style="height: 300px;"></div>
+                <dl class="row col-lg-8 align-content-start">
+                    <dt class="col-sm-2">
+                        <div class="me-1 legend" style="background-color: #5611d9;">
+                        </div>9% On Chain
+                    </dt>
+                    <dd class="col-sm-10">On chain NFTs are immutable and permanent. They are rare as publishing data on
+                        chain is expensive.</dd>
+                    <dt class="col-sm-2">
+                        <div class="me-1 legend" style="background-color: #30cf59; ">
+                        </div>36% IPFS
+                    </dt>
+                    <dd class="col-sm-10">NFTs stored on IPFS can not be changed but they can disappear if no IPFS peers
+                        have a copy.</dd>
+                    <dt class="col-sm-2">
+                        <div class="me-1 legend" style=" background-color: #da548c; ">
+                        </div>55% HTTP
+                    </dt>
+                    <dd class="col-sm-10">HTTP NFTs are stored on a central server and can be modified and <strong>will</strong> disappear when
+                        the server goes offline.</dd>
+                </dl>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-center">
+                    <img src="./rotten-percents.svg" class="img-fluid">
+                </div>
+                <div class="col-lg-8">
+                    <p>If an NFT is served via IPFS or HTTP it is at risk of disappearing. You will find articles warning of this danger but none have data. Given NFTs have been around <a target="_blank"
+                            rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Non-fungible_token#Early_history_(2014%E2%80%932017)">since ~2015</a> and approximately 5% of them are no longer available, they are far from
+                        permanent.</p>
+                    <p>Making NFTs available on IPFS significantly improves the odds they remain online. In particular, as the owner, you can pay to <a href="https://www.pinata.cloud/" rel="noopener noreferrer" target="_blank">pin</a>
+                        them ensuring they stay online. This does not require cooperation by the contract owner.</p>
+                    <p>Unfortunately, many of the biggest NFTs have not leaned into IPFS. For example, OpenSea <a href="./NFT-OpenSea-Protocol.png" target="_blank">serves most of the NFTs they mint over HTTP</a>. If the OpenSea ever
+                        collapses, ~8% of NFTs vanish.</p>
+                </div>
+            </div>
+            <div class="row">
+                <h5 id="data" class="mt-3">Getting the Data</h5>
+                <p>I hoped to distribute a copy of all the NFT images/video via torrent but there are more than 14TBs on the Ethereum block chain! So, that wont be happening...
+                    The <a target="_blank" href="https://docs.opensea.io/docs/metadata-standards#metadata-structure" rel="noopener noreferrer">metadata</a>, contract addresses, and token ids
+                    are ~5GB and can be <a href="#">downloaded via torrent</a>. The 5GB contains most of the data used in this analysis.
+                </p>
+                <p>If you want a copy of all the images/video you can use the metadata to bootstrap your own download or send me an email at
+                    <span id="email">&#121;&#111;&#117;&#114;&#110;&#102;&#116;&#115;&#052;</span>.
+                </p>
+            </div>
+            <div class="row"><small class="text-muted">Published January 2022</small></div>
+        </div>
+    </div>
+    <script>
+        var extent = [0, -25600, 25728, 0];
+        var proj = new ol.proj.Projection({
+            code: 'ZOOMIFY',
+            units: 'pixels',
+            extent: extent
+        })
+        var tilegrid = new ol.tilegrid.TileGrid({
+            extent: extent,
+            resolutions: [64, 32, 16, 8, 4, 2, 1],
+            tileSize: [512, 512],
+        });
+
+        var mousePositionControl = new ol.control.MousePosition({
+            coordinateFormat: ol.coordinate.createStringXY(0),
+        });
+
+        var map = new ol.Map({
+            target: 'map',
+            //controls: [mousePositionControl],
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        tileGrid: tilegrid,
+                        url: 'dz/{z}/{y}/{x}.jpg',
+                        projection: proj,
+                    }),
+                }),
+            ],
+            view: new ol.View({
+                center: [25600 / 2, 0],
+                zoom: 1,
+                projection: proj,
+                minZoom: 1,
+                maxZoom: 10,
+            })
+        });
+        map.getView().fit(extent);
+        map.getView().setZoom(map.getView().getZoom() + .1)
+
+        //smooth scrolling
+        $(document).ready(function () {
+            $("a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
